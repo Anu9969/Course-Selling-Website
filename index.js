@@ -1,5 +1,5 @@
-import express from 'express';
-
+const express = require('express');
+const port = 8000;
 const app = express();
 
 app.get('/', (req,res) => {
@@ -7,4 +7,6 @@ app.get('/', (req,res) => {
 })
 
 
-app.listen(3000, () => {});
+app.listen(port, () => {
+    console.log(`Course selling app listening on port ${port}`)
+});
