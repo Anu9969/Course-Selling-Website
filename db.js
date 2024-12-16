@@ -1,95 +1,39 @@
 // import mongoose
 const {Schema,default:mongoose} = require('mongoose');
 
+mongoose.connect("")
+const Schema = mongoose.Schema;
+const ObjectId = mongoose.Types.ObjectId;
+
 // create schema
 const userSchema = Schema({
-    _id:{
-        type: mongoose.Schema.Types.ObjectId,
-        auto: true
-    },
-    email:{
-        type: String,
-        required: true
-    },
-    password:{
-        type: String,
-        required:true
-    },
-    firstName:{
-        type:String,
-        required:true
-    },
-    lastName:{
-        type:String,
-        required:true
-    }
-    
+
+    email:{type:String, unique: true},
+    password:String,
+    firstName:String,
+    lastName:String,
 })
 
 const adminSchema =Schema({
-    _id:{
-        type: mongoose.Schema.Types.ObjectId,
-        auto: true
-    },
-    email:{
-        type: String,
-        required: true
-    },
-    password:{
-        type: String,
-        required:true
-    },
-    firstName:{
-        type:String,
-        required:true
-    },
-    lastName:{
-        type:String,
-        required:true
-    }
-
+    email:{type:String, unique: true},
+    password:String,
+    firstName:String,
+    lastName:String,
+    
 })
 
 const courseSchema = Schema({
-    _id:{
-        type: mongoose.Schema.Types.ObjectId,
-        auto: true
-    },
-    title:{
-        type: String,
-        required: true
-    },
-    description:{
-        type: String,
-        required:true
-    },
-    price:{
-        type:number,
-        required:true
-    },
-    imageURL:{
-        type:String,
-        required:false
-    },
-    creatorId:{
-        type:mongoose.Schema.Types.ObjectId,
-        required:true
-    }
+    
+    title:String,
+    description:String,
+    price: Number,
+    imageUrl:String,
+    creatorId:ObjectId
 })
 
 const purchaseSchema = Schema({
-    _id:{
-        type:mongoose.Schema.Types.ObjectId,
-        required:true
-    },
-    courseId:{
-        type:mongoose.Schema.Types.ObjectId,
-        required:true
-    },
-    userId:{
-        type:mongoose.Schema.Types.ObjectId,
-        required:true
-    }
+   userId:ObjectId,
+   courseId:ObjectId
 })
 
 // create model
