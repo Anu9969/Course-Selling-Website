@@ -2,7 +2,7 @@
 // const userRoutes = express.Routes();
 
 const {Router} = require('express');
-
+const {userModel} = require('../db');
 const userRouter = Router();
 
 userRouter.post('/signup', (req,res) =>{
