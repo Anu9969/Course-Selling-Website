@@ -5,7 +5,7 @@ const {CourseRouter} = require('./routes/course');
 const {adminRouter} = require('./routes/admin');
 
 const app = express();
-
+app.use(express.json()); //jb bhi user se data input kranah to use this 
 
 app.use('/user' , userRouter);
 app.use('/course' , CourseRouter);

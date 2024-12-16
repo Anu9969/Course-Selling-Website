@@ -5,7 +5,15 @@ const {Router} = require('express');
 const {userModel} = require('../db');
 const userRouter = Router();
 
-userRouter.post('/signup', (req,res) =>{
+userRouter.post('/signup', async (req,res) =>{
+    const {email,password,firstName, lastName} = req.body;
+
+    await userModel.create({
+        email:email,
+        password:password,
+        firstName:firstName,
+        lastName:lastName
+    })
     res.json({
         message: "signup endpoint"
     })
