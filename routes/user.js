@@ -3,6 +3,9 @@
 
 const {Router} = require('express');
 const {userModel} = require('../db');
+const jwt = require("jsonwebtoken");
+const JWT_USER_PASSWORD = "Anu9969";
+
 const userRouter = Router();
 
 userRouter.post('/signup', async (req,res) =>{
@@ -18,10 +21,32 @@ userRouter.post('/signup', async (req,res) =>{
         message: "signup endpoint"
     })
 })
-userRouter.post('/login' ,function(req,re) {
-    res.json({
-        message: "login endpoint"
+userRouter.post('/login' ,async function(req,res) {
+    const {email, password} = req.body;
+
+    const user = await userModel.findOne({
+        email:email,
+        password:password
     })
+
+    if(user){
+        const token = JsonWebTokenError.sign({
+            id:user._id
+        }, JWT_USER_PASSWORD);    //YE JWT NHI SAMJHA BUT SAB SAMJHNA H IS PROJEDT SE RELATED SAATH SAATH
+
+        //aise token auth kro ya can use cookie logic
+
+        res.json({
+            token:token
+        })
+ 
+    }
+    else{
+        res.status(403).json({
+            message: "inxorrect email or password"
+        })
+    }
+    
 })
 
 
