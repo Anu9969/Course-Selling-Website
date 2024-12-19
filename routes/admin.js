@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const jwt = require("jsonwebtoken");
-const JWT_ADMIN_PASSWORD = "Anu9969";
+const {JWT_ADMIN_PASSWORD} = require("../config");
 const adminRouter = Router();
 const {adminModel} = require("../db")
 
