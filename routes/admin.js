@@ -57,13 +57,28 @@ adminRouter.post('/login' , async (req,res)=>{
 
 })
 
-adminRouter.post('/allCources' , (req,res)=>{
+adminRouter.post('/allCources' , async (req,res)=>{
+    const adminId = req.userId;
+
+    const {title, description, imageUrl, price } = req.body;
+
+    const course = await courseModel.create({
+        title:title,
+        description:description,
+        imageUrl:imageUrl,
+        price:price,
+        creatorId:adminId
+
+    })
+
     res.json({
-        message: "admin all courses endpoint"
+        message: "course created",
+        courseId:course.id
     })
 })
 
 adminRouter.put('/edit' , (req,res)=>{
+    
     res.json({
         message: "admin edit courses endpoint"
     })
